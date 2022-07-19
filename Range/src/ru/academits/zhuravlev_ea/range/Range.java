@@ -9,27 +9,27 @@ public class Range {
         this.to = to;
     }
 
-    public void setFrom(double userFrom) {
-        from = userFrom;
-    }
-
     public double getFrom() {
         return from;
     }
 
-    public void setTo(double userTo) {
-        to = userTo;
+    public void setFrom(double from) {
+        this.from = from;
     }
 
     public double getTo() {
         return to;
     }
 
-    public double getLength () {
+    public void setTo(double to) {
+        this.to = to;
+    }
+
+    public double getLength() {
         return to - from;
     }
 
-    public boolean isInside (double number) {
+    public boolean isInside(double number) {
         return number >= from && number <= to;
     }
 }
