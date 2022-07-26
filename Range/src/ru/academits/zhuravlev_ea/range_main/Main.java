@@ -44,27 +44,46 @@ public class Main {
 
         Range range2 = new Range(from, to);
 
-        Range result = range1.getIntersectionsTwoRange(range2);
+        Range result1 = range1.getIntersectionsTwoRanges(range2);
 
-        System.out.println(result.getFrom() + " и " + result.getTo());
-
-        /* double length = Math.abs(range1.getLength());
-        System.out.printf("Длина диапазона = %.2f%n", length);
-
-        System.out.print("Введите любое вещественное число - ");
-        double number = scanner.nextDouble();
-
-        if (range1.isInside(number)) {
-            System.out.println("Данное число находится в диапазоне введённых чисел.");
+        if (result1 == null) {
+            System.out.println("Пересечение между двумя заданными диапазонами отсутствует.");
         } else {
-            System.out.println("Данное число не находится в диапазоне введённых чисел.");
+            System.out.println("Диапазон пересечения двух указанных Вами диапазонов будет равен " + result1);
         }
 
-        System.out.printf("Вы ввели числа от %.2f до %.2f%n", range1.getFrom(), range1.getTo());
+        Range[] result2 = range1.getCombiningTwoRanges(range2);
 
-        range1.setFrom(0);
-        range1.setTo(0);
-        System.out.printf("При завершении программы значения обнулились и приняли значения от %.2f до %.2f.",
-                range1.getFrom(), range1.getTo());*/
+        StringBuilder sb = new StringBuilder("Новый объединённый диапазон из двух указанных Вами диапазонов будет равен ");
+
+        for (int i = 0; i < result2.length; i++) {
+            sb.append(result2[i]);
+            if (i < result2.length - 1) {
+                sb.append(" и ");
+            } else {
+                sb.append(".");
+            }
+        }
+
+        System.out.println(sb);
+
+        Range[] result3 = range1.getDifferenceTwoRanges(range2);
+
+        if (result3 == null) {
+            System.out.println("Разность двух заданных диапазонов равна 0.");
+        } else {
+            sb = new StringBuilder("Разность двух указанных Вами диапазонов будет равна ");
+
+            for (int i = 0; i < result3.length; i++) {
+                sb.append(result3[i]);
+                if (i < result3.length - 1) {
+                    sb.append(" и ");
+                } else {
+                    sb.append(".");
+                }
+            }
+
+            System.out.println(sb);
+        }
     }
 }
