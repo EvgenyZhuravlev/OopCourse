@@ -56,7 +56,7 @@ public class Range {
             return null;
         }
 
-        return new Range(from,to);
+        return new Range(from, to);
     }
 
     public Range[] getCombiningTwoRanges(Range range) {
@@ -85,7 +85,7 @@ public class Range {
         return new Range[]{new Range(from, to)};
     }
 
-    public Range[] getDifferenceTwoRanges(Range range){
+    public Range[] getDifferenceTwoRanges(Range range) {
         if (this.to == range.from || range.to == this.from || this.to < range.from || range.to < this.from) {
             return null;
         }
@@ -94,7 +94,7 @@ public class Range {
             return new Range[]{new Range(this.from, range.from)};
         }
 
-        if (this.from < range.from && this.to > range.to){
+        if (this.from < range.from && this.to > range.to) {
             return new Range[]{new Range(this.from, range.from), new Range(range.to, this.to)};
         }
 
@@ -102,7 +102,7 @@ public class Range {
             return new Range[]{new Range(range.to, this.to)};
         }
 
-        if (this.from > range.from && this.to < range.to){
+        if (this.from > range.from && this.to < range.to) {
             return new Range[]{new Range(range.from, this.from), new Range(this.to, range.to)};
         }
 

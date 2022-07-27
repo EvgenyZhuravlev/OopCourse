@@ -10,7 +10,7 @@ public class Main {
 
         double from, to;
 
-        for (;;) {
+        for (; ; ) {
             System.out.println("Введите два вещественных числа от и до для первого диапазона.");
             System.out.print("От: ");
             from = scanner.nextDouble();
@@ -27,7 +27,7 @@ public class Main {
 
         Range range1 = new Range(from, to);
 
-        for (;;) {
+        for (; ; ) {
             System.out.println("Введите два вещественных числа от и до для второго диапазона.");
             System.out.print("От: ");
             from = scanner.nextDouble();
