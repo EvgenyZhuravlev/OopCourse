@@ -2,88 +2,51 @@ package ru.academits.zhuravlev_ea.range_main;
 
 import ru.academits.zhuravlev_ea.range.Range;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите два вещественных числа от и до для первого диапазона.");
+        Range range1 = inputRange();
 
-        double from, to;
+        System.out.println("Введите два вещественных числа от и до для второго диапазона.");
+        Range range2 = inputRange();
 
-        for (; ; ) {
-            System.out.println("Введите два вещественных числа от и до для первого диапазона.");
-            System.out.print("От: ");
-            from = scanner.nextDouble();
+        Range intersection = range1.getIntersection(range2);
 
-            System.out.print("До: ");
-            to = scanner.nextDouble();
-
-            if (from > to) {
-                System.out.println("Вы ввели некорректный диапазон. Значение \"От\" больше значения \"До\"");
-            } else {
-                break;
-            }
-        }
-
-        Range range1 = new Range(from, to);
-
-        for (; ; ) {
-            System.out.println("Введите два вещественных числа от и до для второго диапазона.");
-            System.out.print("От: ");
-            from = scanner.nextDouble();
-
-            System.out.print("До: ");
-            to = scanner.nextDouble();
-
-            if (from > to) {
-                System.out.println("Вы ввели некорректный диапазон. Значение \"От\" больше значения \"До\"");
-            } else {
-                break;
-            }
-        }
-
-        Range range2 = new Range(from, to);
-
-        Range result1 = range1.getIntersectionsTwoRanges(range2);
-
-        if (result1 == null) {
+        if (intersection == null) {
             System.out.println("Пересечение между двумя заданными диапазонами отсутствует.");
         } else {
-            System.out.println("Диапазон пересечения двух указанных Вами диапазонов будет равен " + result1);
+            System.out.println("Диапазон пересечения двух указанных Вами диапазонов будет равен " + intersection + ".");
         }
 
-        Range[] result2 = range1.getCombiningTwoRanges(range2);
+        Range[] union = range1.getUnion(range2);
+        Main.printArray("Новый объединённый диапазон из двух указанных Вами диапазонов будет равен ", union);
 
-        StringBuilder sb = new StringBuilder("Новый объединённый диапазон из двух указанных Вами диапазонов будет равен ");
 
-        for (int i = 0; i < result2.length; i++) {
-            sb.append(result2[i]);
-            if (i < result2.length - 1) {
-                sb.append(" и ");
-            } else {
-                sb.append(".");
-            }
-        }
+        Range[] difference = range1.getDifference(range2);
+        Main.printArray("Разность двух указанных Вами диапазонов будет равна ", difference);
+    }
 
-        System.out.println(sb);
+    private static Range inputRange() {
+        Scanner scanner = new Scanner(System.in);
 
-        Range[] result3 = range1.getDifferenceTwoRanges(range2);
+        System.out.print("От: ");
+        double from = scanner.nextDouble();
 
-        if (result3 == null) {
-            System.out.println("Разность двух заданных диапазонов равна 0.");
+        System.out.print("До: ");
+        double to = scanner.nextDouble();
+
+        if (from > to) {
+            System.out.println("Вы ввели некорректный диапазон. Значение \"От\" больше значения \"До\"");
+            return inputRange();
         } else {
-            sb = new StringBuilder("Разность двух указанных Вами диапазонов будет равна ");
-
-            for (int i = 0; i < result3.length; i++) {
-                sb.append(result3[i]);
-                if (i < result3.length - 1) {
-                    sb.append(" и ");
-                } else {
-                    sb.append(".");
-                }
-            }
-
-            System.out.println(sb);
+            return new Range(from, to);
         }
+    }
+
+    private static void printArray(String description, Range[] array) {
+        System.out.println(description + Arrays.toString(array) + ".");
     }
 }
