@@ -1,7 +1,5 @@
 package ru.academits.zhuravlev_ea.range;
 
-import java.util.Arrays;
-
 public class Range {
     private double from;
     private double to;
@@ -60,6 +58,10 @@ public class Range {
             return new Range[0];
         }
 
+        if (from >= range.from && to <= range.to) {
+            return new Range[0];
+        }
+
         if (from < range.from && to < range.to) {
             return new Range[]{new Range(from, range.from)};
         }
@@ -68,15 +70,7 @@ public class Range {
             return new Range[]{new Range(from, range.from), new Range(range.to, to)};
         }
 
-        if (range.from < from && range.to < to) {
-            return new Range[]{new Range(range.from, from)};
-        }
-
-        if (from > range.from && to < range.to) {
-            return new Range[]{new Range(range.from, from), new Range(to, range.to)};
-        }
-
-        if (from == range.from && to > range.to) {
+        if (from >= range.from) {
             return new Range[]{new Range(range.to, to)};
         }
 
@@ -87,5 +81,4 @@ public class Range {
     public String toString() {
         return "(" + from + "; " + to + ")";
     }
-
 }
