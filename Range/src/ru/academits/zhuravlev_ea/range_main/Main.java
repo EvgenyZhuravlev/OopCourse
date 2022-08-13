@@ -30,7 +30,7 @@ public class Main {
         double from;
         double to;
 
-        while (true){
+        while (true) {
             System.out.println(description);
             System.out.print("От: ");
             from = scanner.nextDouble();
