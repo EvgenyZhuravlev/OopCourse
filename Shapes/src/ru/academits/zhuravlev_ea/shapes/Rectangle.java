@@ -1,6 +1,4 @@
-package ru.academits.zhuravlev_ea.rectangle;
-
-import ru.academits.zhuravlev_ea.shape.Shape;
+package ru.academits.zhuravlev_ea.shapes;
 
 public class Rectangle implements Shape {
     private double width;
@@ -41,7 +39,7 @@ public class Rectangle implements Shape {
 
     @Override
     public String toString() {
-        return "прямоугольник";
+        return "прямоугольник с шириной " + width + " и высотой " + height;
     }
 
     @Override

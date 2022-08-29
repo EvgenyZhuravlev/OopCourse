@@ -1,45 +1,43 @@
-package ru.academits.zhuravlev_ea.square;
-
-import ru.academits.zhuravlev_ea.shape.Shape;
+package ru.academits.zhuravlev_ea.shapes;
 
 public class Square implements Shape {
-    private double side;
+    private double sideLength;
 
-    public Square(double side) {
-        this.side = side;
+    public Square(double sideLength) {
+        this.sideLength = sideLength;
     }
 
-    public double getSide() {
-        return side;
+    public double getSideLength() {
+        return sideLength;
     }
 
-    public void setSide(double side) {
-        this.side = side;
+    public void setSideLength(double sideLength) {
+        this.sideLength = sideLength;
     }
 
     @Override
     public double getWidth() {
-        return side;
+        return sideLength;
     }
 
     @Override
     public double getHeight() {
-        return side;
+        return sideLength;
     }
 
     @Override
     public double getArea() {
-        return Math.pow(side, 2);
+        return sideLength * sideLength;
     }
 
     @Override
     public double getPerimeter() {
-        return side + side;
+        return 4 * sideLength;
     }
 
     @Override
     public String toString() {
-        return "квадрат";
+        return "квадрат с длиной стороны " + sideLength;
     }
 
     @Override
@@ -53,14 +51,14 @@ public class Square implements Shape {
         }
 
         Square square = (Square) o;
-        return side == square.side;
+        return sideLength == square.sideLength;
     }
 
     @Override
     public int hashCode() {
         final int PRIME = 37;
         int hash = 1;
-        hash = PRIME * hash + Double.hashCode(side);
+        hash = PRIME * hash + Double.hashCode(sideLength);
         return hash;
     }
 }

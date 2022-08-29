@@ -1,4 +1,4 @@
-package ru.academits.zhuravlev_ea.shape;
+package ru.academits.zhuravlev_ea.shapes;
 
 public interface Shape {
     double getWidth();

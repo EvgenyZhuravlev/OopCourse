@@ -1,6 +1,4 @@
-package ru.academits.zhuravlev_ea.circle;
-
-import ru.academits.zhuravlev_ea.shape.Shape;
+package ru.academits.zhuravlev_ea.shapes;
 
 public class Circle implements Shape {
     private double radius;
@@ -29,7 +27,7 @@ public class Circle implements Shape {
 
     @Override
     public double getArea() {
-        return Math.PI * Math.pow(radius, 2);
+        return Math.PI * radius * radius;
     }
 
     @Override
@@ -39,7 +37,7 @@ public class Circle implements Shape {
 
     @Override
     public String toString() {
-        return "круг";
+        return "круг с радиусом " + radius;
     }
 
     @Override

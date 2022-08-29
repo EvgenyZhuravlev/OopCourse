@@ -1,6 +1,4 @@
-package ru.academits.zhuravlev_ea.triangle;
-
-import ru.academits.zhuravlev_ea.shape.Shape;
+package ru.academits.zhuravlev_ea.shapes;
 
 public class Triangle implements Shape {
     private double x1;
@@ -79,21 +77,46 @@ public class Triangle implements Shape {
 
     @Override
     public double getArea() {
-        return (getWidth() * getHeight()) / 2;
+        double semiperimeter = getPerimeter() / 2;
+        return Math.sqrt(semiperimeter * (semiperimeter - getSegmentLength(x1, x2, y1, y2))
+                * (semiperimeter - getSegmentLength(x2, x3, y2, y3))
+                * (semiperimeter - getSegmentLength(x1, x3, y1, y3)));
     }
 
     @Override
     public double getPerimeter() {
-        double segment1 = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-        double segment2 = Math.sqrt(Math.pow(x3 - x2, 2) + Math.pow(y3 - y2, 2));
-        double segment3 = Math.sqrt(Math.pow(x3 - x1, 2) + Math.pow(y3 - y1, 2));
+        double segment1Length = getSegmentLength(x1, x2, y1, y2);
+        double segment2Length = getSegmentLength(x2, x3, y2, y3);
+        double segment3Length = getSegmentLength(x1, x3, y1, y3);
 
-        return segment1 + segment2 + segment3;
+        return segment1Length + segment2Length + segment3Length;
+    }
+
+    private static double getSegmentLength(double x1, double x2, double y1, double y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
     @Override
     public String toString() {
-        return "треуголник";
+        StringBuilder sb = new StringBuilder("треуголник с координатами ");
+        sb.append("x1:");
+        sb.append(x1);
+        sb.append(", ");
+        sb.append("y1:");
+        sb.append(y1);
+        sb.append(", ");
+        sb.append("x2:");
+        sb.append(x2);
+        sb.append(", ");
+        sb.append("y2:");
+        sb.append(y2);
+        sb.append(", ");
+        sb.append("x3:");
+        sb.append(x3);
+        sb.append(", ");
+        sb.append("y3:");
+        sb.append(y3);
+        return sb.toString();
     }
 
     @Override
@@ -107,8 +130,8 @@ public class Triangle implements Shape {
         }
 
         Triangle triangle = (Triangle) o;
-        return x1 == triangle.x1 && x2 == triangle.x2 && x3 == triangle.x3 && y1 == triangle.y1 && y2 == triangle.y2 &&
-                y3 == triangle.y3;
+        return x1 == triangle.x1 && x2 == triangle.x2 && x3 == triangle.x3
+                && y1 == triangle.y1 && y2 == triangle.y2 && y3 == triangle.y3;
     }
 
     @Override
