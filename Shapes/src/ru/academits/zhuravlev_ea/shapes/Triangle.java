@@ -8,6 +8,15 @@ public class Triangle implements Shape {
     private double y2;
     private double y3;
 
+    public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
+        this.x1 = x1;
+        this.x2 = x2;
+        this.x3 = x3;
+        this.y1 = y1;
+        this.y2 = y2;
+        this.y3 = y3;
+    }
+
     public double getX1() {
         return x1;
     }
@@ -56,15 +65,6 @@ public class Triangle implements Shape {
         this.y3 = y3;
     }
 
-    public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
-        this.x1 = x1;
-        this.x2 = x2;
-        this.x3 = x3;
-        this.y1 = y1;
-        this.y2 = y2;
-        this.y3 = y3;
-    }
-
     @Override
     public double getWidth() {
         return Math.max(Math.max(x1, x2), x3) - Math.min(Math.min(x1, x2), x3);
@@ -77,10 +77,12 @@ public class Triangle implements Shape {
 
     @Override
     public double getArea() {
-        double semiperimeter = getPerimeter() / 2;
-        return Math.sqrt(semiperimeter * (semiperimeter - getSegmentLength(x1, x2, y1, y2))
-                * (semiperimeter - getSegmentLength(x2, x3, y2, y3))
-                * (semiperimeter - getSegmentLength(x1, x3, y1, y3)));
+        double segment1Length = getSegmentLength(x1, x2, y1, y2);
+        double segment2Length = getSegmentLength(x2, x3, y2, y3);
+        double segment3Length = getSegmentLength(x1, x3, y1, y3);
+        double semiPerimeter = (segment1Length + segment2Length + segment3Length) / 2;
+        return Math.sqrt(semiPerimeter * (semiPerimeter - segment1Length) * (semiPerimeter - segment2Length)
+                * (semiPerimeter - segment3Length));
     }
 
     @Override
@@ -98,25 +100,8 @@ public class Triangle implements Shape {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("треуголник с координатами ");
-        sb.append("x1:");
-        sb.append(x1);
-        sb.append(", ");
-        sb.append("y1:");
-        sb.append(y1);
-        sb.append(", ");
-        sb.append("x2:");
-        sb.append(x2);
-        sb.append(", ");
-        sb.append("y2:");
-        sb.append(y2);
-        sb.append(", ");
-        sb.append("x3:");
-        sb.append(x3);
-        sb.append(", ");
-        sb.append("y3:");
-        sb.append(y3);
-        return sb.toString();
+        return "Треугольник с координатами x1:" + x1 + ", y1:" + y1 + ", x2:" + x2 + ", y2:" + y2 + ", x3:"
+                + x3 + ", y3:" + y3;
     }
 
     @Override

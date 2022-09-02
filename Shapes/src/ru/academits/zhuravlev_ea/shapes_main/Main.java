@@ -48,7 +48,8 @@ public class Main {
         }
 
         if (shapes.length < 2) {
-            throw new IllegalArgumentException("Для сравнения периметров не задано ни одной фигуры или задана лишь одна фигура!");
+            throw new IllegalArgumentException("Для сравнения периметров не задано ни одной фигуры или задана лишь " +
+                    "одна фигура, необходимо задать как минимум две фигуры!");
         }
 
         Arrays.sort(shapes, new PerimeterComparator());
