@@ -77,31 +77,33 @@ public class Triangle implements Shape {
 
     @Override
     public double getArea() {
-        double segment1Length = getSegmentLength(x1, x2, y1, y2);
-        double segment2Length = getSegmentLength(x2, x3, y2, y3);
-        double segment3Length = getSegmentLength(x1, x3, y1, y3);
+        double segment1Length = getSegmentLength(x1, y1, x2, y2);
+        double segment2Length = getSegmentLength(x2, y2, x3, y3);
+        double segment3Length = getSegmentLength(x1, y1, x3, y3);
+
         double semiPerimeter = (segment1Length + segment2Length + segment3Length) / 2;
+
         return Math.sqrt(semiPerimeter * (semiPerimeter - segment1Length) * (semiPerimeter - segment2Length)
                 * (semiPerimeter - segment3Length));
     }
 
     @Override
     public double getPerimeter() {
-        double segment1Length = getSegmentLength(x1, x2, y1, y2);
-        double segment2Length = getSegmentLength(x2, x3, y2, y3);
-        double segment3Length = getSegmentLength(x1, x3, y1, y3);
+        double segment1Length = getSegmentLength(x1, y1, x2, y2);
+        double segment2Length = getSegmentLength(x2, y2, x3, y3);
+        double segment3Length = getSegmentLength(x1, y1, x3, y3);
 
         return segment1Length + segment2Length + segment3Length;
     }
 
-    private static double getSegmentLength(double x1, double x2, double y1, double y2) {
+    private static double getSegmentLength(double x1, double y1, double x2, double y2) {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
     @Override
     public String toString() {
-        return "Треугольник с координатами x1:" + x1 + ", y1:" + y1 + ", x2:" + x2 + ", y2:" + y2 + ", x3:"
-                + x3 + ", y3:" + y3;
+        return "Треугольник с координатами (x1: " + x1 + ", y1: " + y1 + "), (x2: " + x2 + ", y2: " + y2 + "), (x3: "
+                + x3 + ", y3: " + y3 + ")";
     }
 
     @Override
